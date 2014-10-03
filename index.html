@@ -50,7 +50,27 @@
 
           <legend><small>2) Stateless  <i>(C-S, <u>S</u>, $, U, L, CoD)</i></small></legend>
           <p>
-             COMPLETAR           
+             The stateless constraint describes that all information needed to understand the conversation state data between origin servers and user agents must be included in the request and response messages. That means that no conversational state is kept on the server between requests; state is kept on the client. Important inspection points are related to server state data flow. The Stateless constraint enables replication of servers and hence promotes availability, scalability and reliability; on the other hand, it may decrease performance due to the need for sending the conversational state data embedded in request and response messages.          
+          </p>
+            
+          <legend><small>3) Cache <i>(C-S, S, <u>$</u>, U, L, CoD)</i></small></legend>
+          <p>
+             The cache constraint is added in order to improve performance. A cache element acts as a mediator between client and server. The objective is to avoid a request-response interaction when the information is present in the cache, thus avoiding network traffic. In multi-tier solutions (layered system constraint), a cache may also be present in intermediary tiers. Although cache is an ordinary feature of the World Wide Web, it is not always used in REST services that are part of SOA solutions. Evaluators should inspect what data has to be cacheable. The degree to which the cache will increase network efficiency and hence performance, depends on the cache strategy. However, the use of a cache may decrease reliability in cases when the client may consume stale data from the cache.        
+          </p>
+            
+          <legend><small>4) Uniform Interface <i>(C-S, S, $, <u>U</u>, L, CoD)</i></small></legend>
+          <p>
+             Uniform Interface across components is the central feature that distinguishes REST from other network-based styles [4]. Uniform Interface is closely related to resources, identifiers and representations. A resource is any important concept in the system domain that we want to make accessible through a uniform interface. A service consumer addresses resources through a unique identifier (URI) and a representation. The representation of a resource refers to a hypermedia document that brings any useful information about the state of the resource and links to other associated resources. Finally, the representation of a resource must be accessed by a simple interface that defines an identification for the resource and common methods to access. This interface is the uniform interface. Uniform interface constraint impacts positively in interoperability and discoverability quality attributes.        
+          </p>
+
+          <legend><small>5) Layered System <i>(C-S, S, $, U, <u>L</u>, CoD)</i></small></legend>
+          <p>
+             The layered system constraint as described by Fielding is not exactly the more general layered pattern often found in the patterns literature. In fact, since 2000 the architectural pattern more easily identified with the REST layered constraint described by Fielding is multi-tier. Multi-tier is an architectural style that is a specialization of the client-server style [8], where an intermediary tier acts as server to the previous tier and as client to the subsequent tier. Fielding suggests that elements in a tier should not “see” beyond the next tier hence containing overall system complexity. Legacy systems, databases and backend systems in general are often enclosed in the rearmost tier. Elements in an intermediary tier can be load-balanced for improved availability, scalability, and system throughput. However, the deployment of components across several layers may increase the response time for a given request, due to the multi-hop communication across layers. Although simple REST services can be available on the “server-side” of client-server architectures, REST services are often found on “server-side” tiers of multi-tier applications developed using Java EE, .NET, or other implementation platform suitable for multi-tier applications.        
+          </p>
+            
+          <legend><small>6) Code-on-Demand <i>(C-S, S, $, U, L, <u>CoD</u>)</i></small></legend>
+          <p>
+             Code-on-Demand is an optional constraint that enables a dynamic architecture where the user agent logic can be extended by code received from the service. Code can be for instance an applet or JavaScript function used in web pages to render widgets or validate user input. As another example, consider a client that obtains from the server the code that is required to run in order to encrypt message payloads. Code-on-demand is a form of runtime variability since the functionality and behaviour of user agent can vary at runtime per the code received in response messages to a REST service. CoD promotes extensibility. On one side, the basic client implementation devoid of any code received on demand is lightweight, but on the other side, the complexity of this client implementation increases to handle the runtime code additions. Interoperability may decrease since the downloaded code has to be compatible among all service consumers. Security is also a concern to prevent malicious code to reach the clients.     
           </p>
           
         </div>
@@ -87,11 +107,109 @@
               <td>Reliability</td>
               <td>
                 <p>
-                  COMPLETAR
+                   <b>R1</b>- A service consumer ‘A’ requests a resource ‘R1’ in a specific version specified directly in the URI and receives the representation of the actual state of ‘R1’ in response message.
+                </p>
+                <p>
+                  <b>R2</b>- Based on the domain model, a service consumer ‘A’ builds the URI of resource ‘R1’ and receives the representation of the actual state of ‘R1’ in response.
                 </p>
               </td>
             </tr>
             <tr>
+              <tr>
+              <td>Security</td>
+              <td>
+                <p>
+                   <b>S1</b>- A service consumer ‘A’ with insufficient privileges requests confidential information to a service interface ‘X’, ‘X’ denies the request and informs ‘A’ about the lack of authorization.
+                </p>
+                <p>
+                  <b>S2</b>- An authenticated and authorized service consumer ‘A’ requests a confidential resource ‘R1’ which it has access to and receives the representation of the actual state of ‘R1’ in response.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <tr>
+              <td>Testability</td>
+              <td>
+                <p>
+                   <b>T1</b>- A developer wants to test a service. If an error occurs when processing the request, the service can be configured to provide in the response all information to identify the error, including the execution trace.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <tr>
+              <td>Performance</td>
+              <td>
+                <p>
+                   <b>P1</b>- A service consumer ‘A’ performs an action in a resource ‘R1’ and receives the representation of actual state of ‘R1’ in response in less than n milliseconds.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <tr>
+              <td>Availability</td>
+              <td>
+                <p>
+                   <b>Av1</b>- The web server where the REST services run is flooded with a number of requests N percent higher than normal and the services remain responsive.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <tr>
+              <td>Modifiability</td>
+              <td>
+                <p>
+                   <b>M1</b>- A developer modifies the core logic and internal data sources of a service, but the service contract (uniform interface, supported URIs and representations) remains the same; the effort to effect these changes is bound to N person-days.
+                </p>
+                <p>
+                   <b>M2</b>- The representation structure of a resource ‘R1’ and its relations to other resources change, and resource identification (URI) is not affected.
+                </p>
+                <p>
+                   <b>M3</b>- Resource representations are modified and the respective services must correctly process requests from service consumers that use the old version and consumers that use the new version of the resources under the same URI.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <tr>
+              <td>Safety</td>
+              <td>
+                <p>
+                   <b>Sa1</b>- A service consumer ‘A’ performs many requests by using the idempotent method http PUT and the resource has the same value as the first request performed.
+                </p>
+                <p>
+                  <b>Sa2</b>- A service consumer ‘A’ performs requests by using safe methods (such as http GET and OPTIONS) and the resource is not modified.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <tr>
+              <td>Discoverability</td>
+              <td>
+                <p>
+                   <b>D1</b>- A service consumer ‘A’ requests a resource ‘R1’ and receives the URIs to find resources associated to ‘R1’
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <tr>
+              <td>Functionality</td>
+              <td>
+                <p>
+                   <b>F1</b>- Based on the default organization of a resource identification in a service interface, a service consumer ‘A’ can compose a resource URI.
+                </p>
+                <p>
+                   <b>F2</b>- The developer of a service consumer finds clear and up-to-date documentation of the service interface.
+                </p>
+                <p>
+                   <b>F3</b>- A service consumer ‘A’ performs an action on a resource and receives its identification (URI) in the http header field Location.
+                </p>
+                <p>
+                   <b>F4</b>- A service consumer ‘A’ requests a representation of some attributes of a resource ‘R1’, defines the number n of pages and receives the actual state of attributes requested of ‘R1’ in n pages in response.
+                </p>
+                <p>
+                   <b>F5</b>- A service consumer ‘A’ wants to perform operations in a resource and ‘A’ can only use http primitives for that.
+                </p>
+              </td>
+            </tr>
           </tbody>
         </table>
         </div>
@@ -122,12 +240,16 @@
                 <p>
                     This question should elicit the nature of the software components that will act as consumers to REST services. They can be web pages on a browser, a Java or .NET component running on a server machine, mobile apps, standalone applications, or any other kind of program that can communicate via http. We should also elicit the nature and properties of the communication channel. Are service consumers at the same local network or intranet where the REST service is? How fast and reliable is the connection? Is the communication channel encrypted? 
                 </p>
+                <h4>5) Is confidential information exposed as a resource?</h4>
+                <p>
+                    General scenario S1 describes general security issues that have to be analysed when designing resources. Therefore, evaluators should know whether data confidentiality is a requirement for any REST service.
+                </p>
                 
             <br><br>
 
                <legend><small>B. Representation and identification</small></legend>
                 <p>The following questions related to the representation and identification of resources can help to spot risks in the design of REST services:</p>
-                <legend><small>1) What format is used to represent resources?</small></legend>
+                <h4>1) What format is used to represent resources?</h4>
                 <p>
                     A resource is represented by a document with a media type identified by a name (such as text/xml), and declared in Content-Type http headers. XML (application/xml) is a very common representation format for resources, although other formats, such as HTML, ATOM, and JSON, are also widely used. Development frameworks and platforms provide different levels of support for different formats. The choice of representation format also affects performance and reliability. To achieve interoperability quality attribute scenarios like 
 
@@ -138,11 +260,102 @@
                 </p>
                <h4>2) Is a standardized vocabulary defined for the resource?</h4>
                 <p>
-                    COMPLETAR
+                    A resource representation should follow a predefined vocabulary. For XML documents, the vocabulary can be defined by an XML schema. The vocabulary should also be standardized across all services that handle that same resource, as previously discussed in question A.3. Using a vocabulary known by service consumers improves interoperability scenario I3. Also, all information needed to understand the resource must be included in the request and response messages (constraint Stateless, session IV). The HATEOAS (Hypermedia as the Engine of Application State) constraint [3] is used for this purpose. This constraint states that the hypermedia document that represents the resource should be used to find associated resources. For instance, the following fragment of the representation of resource “course” from a university contains a link to another resource representing the lecturers that teach the course:
+                    <br><br>
+                    <i>
+                        &lt;course&gt; <br>
+                        &lt;name&gt; Software Architecture &lt;/name&gt; <br>
+                        &lt;area&gt;Software Engineering&lt;/area&gt; <br>
+                        &lt;instructors&gt; <br>
+                        &lt;uri&gt;/courses/sa/lecturers&lt;/uri&gt; <br>
+                        &lt;/instructors&gt; &lt;/course&gt; <br>
+                    </i>
+          
                 </p>
-                
-            <br><br>
-
+                <p>
+                HATEOAS positively affects discoverability scenario D1. The response time for a service request decreases because the representation does not need to bring all information about the linked resources, but only references (hyperlinks). However, a greater number of network requests may be necessary to retrieve linked information and the overall performance may be negatively impacted.
+                </p>
+                <h4>3) How do you design resources URIs?</h4>
+                <p>
+                    The Uniform Resource Identifier (URI) is a string of characters used to uniquely identify a web resource. A resource must have at least one URI that makes it addressable via http. Several principles for designing URIs [11] can be used for the specification of REST resource identifiers.
+                </p>   
+                <p> Designing descriptive URIs related to the hierarchy of the domain model improves reliability scenario R2. Examples of descriptive URIs are listed below:
+                    <ul>
+                      <li>http://www.myweather.com/current/city/Brasilia</li>
+                      <li>http://www.ufrj.edu/courses/programming101</li>
+                    </ul>
+                </p>
+                <p>However, URIs are not always descriptive. An example of URI where a resource is identified by a numeric ID (52545) is http://www.resoucerslib.com/52545. Resource identification by ID positively impacts the modifiability quality attribute scenario M2, but impacts negatively in reliability scenario R2. Other strategies to design resource identifiers can be used. Evaluators should inspect the trade-offs between descriptive and non-descriptive URIs according to both the usability and adaptability requirements. Establishing a pattern to define URIs for REST services is a good practice that positively impacts the functionality scenario F1.
+                </p>
+                <p>In general, URIs should use nouns, not verbs. According to the Uniform Interface constraint, the operation to be executed should be specified by the http verb, not in the URI. For example, instead of URI http://www.ufrj.com/getcourses, we should use http get on URI http://www.ufrj.com/courses. If verbs are used in the URI, functionality, as in scenario F5, could be negatively impacted.
+                </p>
+                <h4>4) What is the approach for resource versioning?</h4>
+                <p>
+                    Representations of resources are accessed by their identification (URI). If a representation is modified, service consumers that request that resource can be negatively impacted. The reason for such modification can be evolution of the domain model that impacts in the resource representation. Versioning of resources is a good practice to solve this problem that positively affects the modifiability scenario M3. A commonly used strategy to version resources is to include a version number within the URL. For instance:
+                    <ul>
+                      <li>http://www.ufrj.com/courses/v1/comperscience</li>
+                    </ul>
+                </p>  
+                <p>Another alternative is to include the version in the http header, for example: “Accept: <i>Content-type: application/xml; version=1.0”</i>. Evaluators should inspect the trade-off between URI versioning and http header versioning. For example, for human users requesting resources via web browsers, URI versioning may be a better solution and, in this case, reliability quality attribute scenario R1 is positively impacted.
+                </p>
+                <h4>5) How do you map operations on resources to http verbs?</h4>
+                <p>
+                    This question is related to question 2 (<i>How to Identify Resources?</i>). Per the Uniform Interface constraint (Section IV), the interface must use common http methods (also called verbs) to indicate the action to be performed on a resource: POST to create a new resource; PUT to update a resource; DELETE to remove a resource; and OPTIONS to list what methods are supported on a resource. By using http verbs functionality scenarios like F5 are promoted.
+                </p>  
+                <p>Important concepts when designing the resource exposure are idempotent and safe methods. Safe methods are http methods that do not modify resources (for instance GET and OPTIONS); they only request information. An idempotent http method is a method that can be called many times without different outcomes. For instance, consider two actions that assign a value to variable var: (a) var = 5; (b) var++. The first example (a) is idempotent; no matter how many times the method is executed the result will always be 5. The second example (b) is not idempotent. Different number of execution results in different outcomes. Http PUT and DELETE are idempotent, POST is not. Safety quality attribute scenarios Sa1 and Sa2 are related to idempotent and safe methods.
+                </p>
+                <br><br>
+                <legend><small>C. Documentation and testing</small></legend>
+                <p>Service consumers perform actions (GET, PUT, POST and DELETE) in resources. Evaluators should inspect the documentation about resources related to identification, representation, security and design. Developers of service consumers need to understand the service interface. When evaluating documentation and tests, the following questions help determining risks:</p>
+                <h4>1) How resources should be documented?</h4>
+                <p>
+                    Developers of service consumers need to understand how to interact with the service interface to access and use resources. Effective service interface documentation positively impacts the functionality scenario F2.
+                </p>  
+                <h4>2) How service consumers can perform tests in resources?</h4>
+                <p>
+                    It is important for service consumers and developers to perform tests in the service interface. Dynamic tests can be executed using a “service sandbox”. Http methods like GET and PUT can be executed against the sandbox environment. This is a typical scenario to improve the testability quality attribute scenario T1.
+                </p>  
+                <br><br>
+                <legend><small>D. Behaviour</small></legend>
+                <p>Behaviour is related to the service interface behaviour when service consumers perform actions on resources. When evaluating behaviour, the following questions help determining risks:
+                </p>
+                <h4>1) What are the http status codes in responses?</h4>
+                <p>
+                    REST services should use standard http status codes to report success and error when processing requests. Evaluators should ask about the use of standard http status codes. Their use contribute to functionality scenarios, such as F5.
+                </p> 
+                <h4>2) Does the response http header contain information about the resource?</h4>
+                <p>
+                    When service consumers perform actions in a resource, the service implementation must include in the http responses the header field “Location” filled with the URI of the manipulated resource. Service consumers can correlate the URI of the new resource created with the URI in the Location header response, positively affecting functionality scenarios like F3.
+                </p> 
+                <h4>3) Can the resource communicate with Open APIs?</h4>
+                <p>
+                    Open API is a common trend for web-based services in social networks and e-business, to publish public services over the Internet. If a service interface allows the use of Open APIs, functionality (for instance scenario F5) is positively impacted. However, the trade-off between functionality and security (as in scenario S1) should be considered.
+                </p> 
+                <h4>4) Is pagination in resources necessary?</h4>
+                <p>
+                    Full representation of resources may negatively impact performance scenarios like P1. Evaluators should assess if pagination of the resource representation is needed. A good practice is to use query strings to specify page number and size. For example, a URI for “courses at UFRJ” that specifies the visualization for page one with thirty courses could be: http://www.ufrj.com/courses?page=1&size=30. Pagination is related with performance and functionality scenarios, such as P1 and F4.
+                </p> 
+                <h4>5) Is it possible to include the subset of desired attributes in the URI?</h4>
+                <p>
+                    Suppose a service consumer only wants a subset of attributes and the service interface only supports responses containing the full representation of a resource. In this case, performance and functionality scenarios P1 and F4 are negatively impacted. A good practice is to include a filter in the URI. For example, the following URI will retrieve only the name and number of credits for courses at UFRJ: http://www.ufrj.com/courses?attributes= name,credits.
+                </p>
+                <h4>6) How to protect the web server from request overload?</h4>
+                <p>
+                    Service consumers can perform a huge number of requests resulting in web server overload. Evaluators should ask about mechanisms in place to prevent request overload, and hence promote promote availability, as in scenario Av1.
+                </p>
+                <br><br>
+                <legend><small>E. Security</small></legend>
+                <p>
+                    Design questions about security are related to authentication, authorization, and privacy. When evaluating security, the following questions help determining risks:
+                </p>
+                <h4>1) Did service design consider information classification?</h4>
+                <p>
+                    This question is associated to design question 2 (<i>What data will be exposed as resources?</i>). Evaluators should pay special attention to the risk of exposing private information in public resources. Different parts of a resource may have different security classifications. Such situation may impact granularity of the services (e.g., breaking up the resource into two, one with public information and the other with private information). Scenarios such as S1 are affected.
+                </p>
+                <h4>2) What are the security mechanisms for service consumers to perform actions on resources?</h4>
+                <p>
+                    Some resources are restricted to specific groups of service consumers. Security mechanism to ensure authentication and authorization of service consumers may be required. Some commonly adopted standards are OAuth [12] and OpenID [13]. Http Basic Authentication can also be used. The version 2.0 of OAuth has proven to be a good strategy for secure authorization in REST-based architectures. A typical scenario for related to this question is S2.
+                </p>
             </div>
           </div>
         </div>

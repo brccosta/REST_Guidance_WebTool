@@ -8,7 +8,8 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="css/carousel.css" rel="stylesheet">
+      
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,20 +24,9 @@
       <hr/>
       <p>The use of Representational State Transfer (REST) as an architectural style for integrating services and applications brings several benefits, but also poses new challenges and risks. Particularly important among those risks are failures to effectively address quality attribute requirements such as security, reliability, and performance. An architecture evaluation early in the software life cycle can identify and help mitigate those risks. In this report we present guidelines to assist architecture evaluation activities in REST-based systems. These guidelines can be systematically used in conjunction with scenario-based evaluation methods to reason about design considerations and trade-offs.</p>
       <hr/>
-      <ul class="nav nav-tabs">
-        <li class="active">
-        <a href="#tab1" data-toggle="tab">Rest Foundations</a>
-        </li>
-        <li>
-        <a href="#tab2" data-toggle="tab">Generic Scenarios</a>
-        </li>
-        <li>
-        <a href="#tab3" data-toggle="tab">Design Questions</a>
-        </li>
-      </ul>
-  
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab1">
+    <div id="Carousel-Content" class="carousel slide">
+      <div class="carousel-inner tab-content">
+        <div class="tab-pane active item" id="tab1">
           <h3>Foundations of REST for Architecture Evaluation</h3>
           <legend>REST Constraints</legend>
           <p>
@@ -75,7 +65,7 @@
           
         </div>
 
-        <div class="tab-pane" id="tab2">
+        <div class="tab-pane item" id="tab2">
           <h3>Examples of REST General Quality Attribute Scenarios</h3>
           <p>
             A quality attribute is a measurable or testable property of a system that is used to indicate how well the system satisfies the needs of its stakeholders. Here we enumerate general quality attribute scenarios for ten quality attributes that are important to consider when using the REST style. These general scenarios are referenced in the REST design questions to illustrate how they are affected by design decisions. There is no universal definition for each quality attribute, several definitions and taxonomies of quality attributes are found in the literature. But that fact is not an issue in scenario-based architecture evaluations, because what actually defines the quality attribute requirement is the scenario statement. We label a scenario, say as a “usability scenario” or “performance scenario”, merely for organization purposes.
@@ -172,7 +162,7 @@
         </table>
         </div>
 
-        <div class="tab-pane" id="tab3">
+        <div class="tab-pane item" id="tab3">
           <h3>REST Design Questions that Affect Quality Attributes</h3>
 
           <p>In architectures based on the REST style, several design decisions bear quality trade-offs and are driven by the quality attribute requirements. This section covers topics that are particularly relevant when designing REST-based systems: Design of Resources (subsection A); Representation and identification; Documentation and testing; Behaviour, and; Security. In each topic we present the design questions that evaluators should ask referencing to the general scenario that is impacted.</p>
@@ -245,7 +235,7 @@
                 </p>
                 <p>However, URIs are not always descriptive. An example of URI where a resource is identified by a numeric ID (52545) is http://www.resoucerslib.com/52545. Resource identification by ID positively impacts the modifiability quality attribute scenario <a class="M2Scenario"><b>M2</b></a>, but impacts negatively in reliability scenario <a class="R2Scenario"><b>R2</b></a>. Other strategies to design resource identifiers can be used. Evaluators should inspect the trade-offs between descriptive and non-descriptive URIs according to both the usability and adaptability requirements. Establishing a pattern to define URIs for REST services is a good practice that positively impacts the functionality scenario <a class="F1Scenario"><b>F1</b></a>.
                 </p>
-                <p>In general, URIs should use nouns, not verbs. According to the Uniform Interface constraint, the operation to be executed should be specified by the http verb, not in the URI. For example, instead of URI http://www.ufrj.com/getcourses, we should use http get on URI http://www.ufrj.com/courses. If verbs are used in the URI, functionality, as in scenario <a id="F5Scenario"><b>F5</b></a>, could be negatively impacted.
+                <p>In general, URIs should use nouns, not verbs. According to the Uniform Interface constraint, the operation to be executed should be specified by the http verb, not in the URI. For example, instead of URI http://www.ufrj.com/getcourses, we should use http get on URI http://www.ufrj.com/courses. If verbs are used in the URI, functionality, as in scenario <a class="F5Scenario"><b>F5</b></a>, could be negatively impacted.
                 </p>
                 <h4>4) What is the approach for resource versioning?</h4>
                 <p>
@@ -316,9 +306,16 @@
                 </p>
             </div>
           </div>
+          </div>
         </div>
       </div>      
     </div>
+    <a id="carousel-buttons" class="left carousel-control" href="#Carousel-Content" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a id="carousel-buttons" class="right carousel-control" href="#Carousel-Content" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

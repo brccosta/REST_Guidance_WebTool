@@ -53,6 +53,77 @@ var self = {
         Scenarios.push(new Scenario('F4', 'A service consumer ‘A’ requests a representation of some attributes of a resource ‘R1’, defines the number n of pages and receives the actual state of attributes requested of ‘R1’ in n pages in response.'));
         Scenarios.push(new Scenario('F5', 'A service consumer ‘A’ wants to perform operations in a resource and ‘A’ can only use http primitives for that.'));
         
+        self.preparePopover(Scenarios);
+        self.prepareCarousel();
+    },
+    prepareCarousel: function() {
+        var selector = $('#Carousel-Content');
+        selector.carousel({
+          interval: 0
+        });
+
+        $('.carousel-linked-nav > li > a').click(function() {
+            var item = Number($(this).attr('href').substring(1));
+            selector.carousel(item - 1);
+            $('.carousel-linked-nav .active').removeClass('active');
+            $(this).parent().addClass('active');
+            return false;
+        });
+
+        selector.bind('slid', function() {
+            $('.carousel-linked-nav .active').removeClass('active');
+            var idx = $('#myCarousel .item.active').index();
+            $('.carousel-linked-nav li:eq(' + idx + ')').addClass('active');
+        });
+    },
+    preparePopover: function(Scenarios) {
+        
+        var options = {
+            placement: function (context, source) {
+                var $win, $source, winWidth, popoverWidth, popoverHeight, offset, toRight, toLeft, placement, scrollTop;
+
+                $win = $(window);
+                $source = $(source);
+                placement = $source.attr('data-placement');
+                popoverWidth = 400;
+                popoverHeight = 110;
+                offset = $source.offset();
+
+                if (placement.match(/^right|left$/)) {
+                    winWidth = $win.width();
+                    toRight = winWidth - offset.left - source.offsetWidth;
+                    toLeft = offset.left;
+
+                    if (placement === 'left') {
+                        if (toLeft > popoverWidth) {
+                            return 'left';
+                        } else if (toRight > popoverWidth) {
+                            return 'right';
+                        }
+                    } else {
+                        if (toRight > popoverWidth) {
+                            return 'right';
+                        } else if (toLeft > popoverWidth) {
+                            return 'left';
+                        }
+                    }
+                }
+
+                scrollTop = $win.scrollTop();
+                if (placement === 'bottom') {
+                    if (($win.height() + scrollTop) - (offset.top + source.offsetHeight) > popoverHeight) {
+                        return 'bottom';
+                    }
+                    return 'top';
+                } else {
+                    if (offset.top - scrollTop > popoverHeight) {
+                        return 'top';
+                    }
+                    return 'bottom';
+                }
+            }
+        };
+        
         //Add popover functionality to scenarios
         Scenarios.forEach(function(cenario) {
             selector = $(cenario.selectorBaseHtml);
@@ -61,8 +132,10 @@ var self = {
             selector.attr('data-trigger', 'focus');
             selector.attr('title', cenario.title);
             selector.attr('data-content', cenario.content);
+            selector.attr('data-placement', 'right');
+            selector.attr('z-index', 1002);
             $(cenario.selectorBaseHtml + 'Content').html(cenario.scenarioContentHTML);
-            selector.popover({placement : 'top'});
+            selector.popover(options);
         });
     }
 };

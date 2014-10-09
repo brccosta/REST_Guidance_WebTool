@@ -75,6 +75,15 @@ var self = {
             var idx = $('#myCarousel .item.active').index();
             $('.carousel-linked-nav li:eq(' + idx + ')').addClass('active');
         });
+        
+        $(document).bind('keyup', function(e) {
+            if(e.which == 39){
+                selector.carousel('next');
+            }
+            else if(e.which == 37){
+                selector.carousel('prev');
+            }
+        });
     },
     preparePopover: function(Scenarios) {
         

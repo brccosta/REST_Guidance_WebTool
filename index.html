@@ -19,12 +19,7 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container">
-      
-      <h1>REST Guidance</h1>
-      <hr/>
-      <p>The use of Representational State Transfer (REST) as an architectural style for integrating services and applications brings several benefits, but also poses new challenges and risks. Particularly important among those risks are failures to effectively address quality attribute requirements such as security, reliability, and performance. An architecture evaluation early in the software life cycle can identify and help mitigate those risks. In this report we present guidelines to assist architecture evaluation activities in REST-based systems. These guidelines can be systematically used in conjunction with scenario-based evaluation methods to reason about design considerations and trade-offs.</p>
-      <hr/>
+    <div class="container" style="margin-bottom: 30px;">
     <div id="Carousel-Content" class="carousel slide">
       <div class="carousel-inner tab-content">
         <div class="tab-pane active item" id="tab1">
@@ -233,19 +228,19 @@
                 </p>   
                 <p> Designing descriptive URIs related to the hierarchy of the domain model improves reliability scenario <a class="R2Scenario badge scenario-badge"><b>R2</b></a>. Examples of descriptive URIs are listed below:
                     <ul>
-                      <li>http://www.myweather.com/current/city/Brasilia</li>
-                      <li>http://www.ufrj.edu/courses/programming101</li>
+                      <li><a href="http://www.myweather.com/current/city/Brasilia">http://www.myweather.com/current/city/Brasilia</a></li>
+                      <li><a href="http://www.ufrj.edu/courses/programming101">http://www.ufrj.edu/courses/programming101</a></li>
                     </ul>
                 </p>
-                <p>However, URIs are not always descriptive. An example of URI where a resource is identified by a numeric ID (52545) is http://www.resoucerslib.com/52545. Resource identification by ID positively impacts the modifiability quality attribute scenario <a class="M2Scenario badge scenario-badge"><b>M2</b></a>, but impacts negatively in reliability scenario <a class="R2Scenario badge scenario-badge"><b>R2</b></a>. Other strategies to design resource identifiers can be used. Evaluators should inspect the trade-offs between descriptive and non-descriptive URIs according to both the usability and adaptability requirements. Establishing a pattern to define URIs for REST services is a good practice that positively impacts the functionality scenario <a class="F1Scenario badge scenario-badge"><b>F1</b></a>.
+                <p>However, URIs are not always descriptive. An example of URI where a resource is identified by a numeric ID (52545) is <a href="http://www.resoucerslib.com/52545" >http://www.resoucerslib.com/52545</a>. Resource identification by ID positively impacts the modifiability quality attribute scenario <a class="M2Scenario badge scenario-badge"><b>M2</b></a>, but impacts negatively in reliability scenario <a class="R2Scenario badge scenario-badge"><b>R2</b></a>. Other strategies to design resource identifiers can be used. Evaluators should inspect the trade-offs between descriptive and non-descriptive URIs according to both the usability and adaptability requirements. Establishing a pattern to define URIs for REST services is a good practice that positively impacts the functionality scenario <a class="F1Scenario badge scenario-badge"><b>F1</b></a>.
                 </p>
-                <p>In general, URIs should use nouns, not verbs. According to the Uniform Interface constraint, the operation to be executed should be specified by the http verb, not in the URI. For example, instead of URI http://www.ufrj.com/getcourses, we should use http get on URI http://www.ufrj.com/courses. If verbs are used in the URI, functionality, as in scenario <a class="F5Scenario badge scenario-badge"><b>F5</b></a>, could be negatively impacted.
+                <p>In general, URIs should use nouns, not verbs. According to the Uniform Interface constraint, the operation to be executed should be specified by the http verb, not in the URI. For example, instead of URI <a href="http://www.ufrj.com/getcourses">http://www.ufrj.com/getcourses</a>, we should use http get on URI <a href="http://www.ufrj.com/courses">http://www.ufrj.com/courses</a>. If verbs are used in the URI, functionality, as in scenario <a class="F5Scenario badge scenario-badge"><b>F5</b></a>, could be negatively impacted.
                 </p>
                 <h4>4) What is the approach for resource versioning?</h4>
                 <p>
                     Representations of resources are accessed by their identification (URI). If a representation is modified, service consumers that request that resource can be negatively impacted. The reason for such modification can be evolution of the domain model that impacts in the resource representation. Versioning of resources is a good practice to solve this problem that positively affects the modifiability scenario <a class="M3Scenario badge scenario-badge"><b>M3</b></a>. A commonly used strategy to version resources is to include a version number within the URL. For instance:
                     <ul>
-                      <li>http://www.ufrj.com/courses/v1/comperscience</li>
+                      <li><a href="http://www.ufrj.com/courses/v1/comperscience">http://www.ufrj.com/courses/v1/comperscience</a></li>
                     </ul>
                 </p>  
                 <p>Another alternative is to include the version in the http header, for example: “Accept: <i>Content-type: application/xml; version=1.0”</i>. Evaluators should inspect the trade-off between URI versioning and http header versioning. For example, for human users requesting resources via web browsers, URI versioning may be a better solution and, in this case, reliability quality attribute scenario <a class="R1Scenario badge scenario-badge"><b>R1</b></a> is positively impacted.

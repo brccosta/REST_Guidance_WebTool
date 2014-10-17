@@ -1,4 +1,4 @@
-var selector = $('#Carousel-Content');
+var selector = $('#Carousel-About');
 selector.carousel({
-  interval: 3000
+  interval: 6000
 });

@@ -15,15 +15,14 @@
     vertical-align: middle;
     margin: 0 auto;
     color: blue;
-    position: fixed;
     top: 50%;
     width: 1%;
 }
 
 .right.carousel-control {
-    right: 15px;
+    right: -5%;
 }
 
 .left.carousel-control {
-    left: 15px;
+    left: -5%;
 }

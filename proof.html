@@ -107,7 +107,27 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>-Domain-based vocabulary (EEML) promotes Interoperability. (<b>see subsection B - Representation and identification, question 2</b>)</div> 
+                <div>- Domain-based vocabulary (EEML) promotes Interoperability. (<b><a style="cursor: pointer;" id="btn-toggle-subB-q2"><i class="glyphicon glyphicon-share"></i> see subsection B, question 2</a></b>)</div> 
+                <div class="container panel-body bg-info" id="toggle-subB-q2" style="display: none"><h4>2) Is a standardized vocabulary defined for the resource?</h4>
+                <p>
+                    A resource representation should follow a predefined vocabulary. For XML documents, the vocabulary can be defined by an XML schema. The vocabulary should also be standardized across all services that handle that same resource, as previously discussed in question A.3. Using a vocabulary known by service consumers improves interoperability scenario <a class="I3Scenario badge scenario-badge"><b>I3</b></a>. Also, all information needed to understand the resource must be included in the request and response messages (constraint Stateless, session IV). The HATEOAS (Hypermedia as the Engine of Application State) constraint [3] is used for this purpose. This constraint states that the hypermedia document that represents the resource should be used to find associated resources. For instance, the following fragment of the representation of resource “course” from a university contains a link to another resource representing the lecturers that teach the course:
+                    <br>
+                    <code>
+                        <i>
+                            &lt;course&gt; <br>
+                            &lt;name&gt; Software Architecture &lt;/name&gt; <br>
+                            &lt;area&gt;Software Engineering&lt;/area&gt; <br>
+                            &lt;instructors&gt; <br>
+                                 &lt;uri&gt;/courses/sa/lecturers&lt;/uri&gt; <br>
+                            &lt;/instructors&gt; <br>
+                            &lt;/course&gt; <br>
+                        </i>
+                    </code>
+          
+                </p>
+                <p>
+                HATEOAS positively affects discoverability scenario <a class="D1Scenario badge scenario-badge"><b>D1</b></a>. The response time for a service request decreases because the representation does not need to bring all information about the linked resources, but only references (hyperlinks). However, a greater number of network requests may be necessary to retrieve linked information and the overall performance may be negatively impacted.
+                </p></div>
                 <div>- By using only XML media type interoperability is negatively impacted (<b>see subsection B - Representation and identification, question 1</b>)</div> 
                 <div>- The URI is designed by feed code. It promotes extensibility but negatively impacts in interoperability (<b>see subsection B - Representation and identification, question 3</b>)</div> 
                 <div>- The method used to update resources is PUT and it is idempotent. It promotes Reliability. (<b>see subsection B - Representation and identification, question 5</b>)</div> 

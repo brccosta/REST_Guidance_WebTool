@@ -107,8 +107,8 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>- Domain-based vocabulary (EEML) promotes Interoperability. (<b><a style="cursor: pointer;" id="btn-toggle-subB-q2"><i class="glyphicon glyphicon-share"></i> see subsection B, question 2</a></b>)</div> 
-                <div class="container panel-body bg-info" id="toggle-subB-q2" style="display: none"><h4>2) Is a standardized vocabulary defined for the resource?</h4>
+                <div>- Domain-based vocabulary (EEML) promotes Interoperability. (<b><a style="cursor: pointer;" id="btn-toggle-subB-q2"><i class="glyphicon glyphicon-share"></i>subsection B, question 2</a></b>)</div> 
+                <div class="panel-body bg-info" id="toggle-subB-q2" style="display: none"><h4>2) Is a standardized vocabulary defined for the resource?</h4>
                 <p>
                     A resource representation should follow a predefined vocabulary. For XML documents, the vocabulary can be defined by an XML schema. The vocabulary should also be standardized across all services that handle that same resource, as previously discussed in question A.3. Using a vocabulary known by service consumers improves interoperability scenario <a class="I3Scenario badge scenario-badge"><b>I3</b></a>. Also, all information needed to understand the resource must be included in the request and response messages (constraint Stateless, session IV). The HATEOAS (Hypermedia as the Engine of Application State) constraint [3] is used for this purpose. This constraint states that the hypermedia document that represents the resource should be used to find associated resources. For instance, the following fragment of the representation of resource “course” from a university contains a link to another resource representing the lecturers that teach the course:
                     <br>
@@ -907,5 +907,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/proof.js"></script>
+    <script src="js/popover.js"></script>
   </body>
 </html>

@@ -2,7 +2,6 @@ var self = {
     
     init: function () {        
         self.prepareCarousel();
-        self.prepareToggle();
     },
     prepareCarousel: function() {
         var selector = $('#Carousel-Proof');
@@ -31,11 +30,6 @@ var self = {
             else if(e.which == 37){
                 selector.carousel('prev');
             }
-        });
-    },
-    prepareToggle: function() {
-        $( "#btn-toggle-subB-q2" ).click(function() {
-          $( "#toggle-subB-q2" ).toggle();
         });
     }
 };

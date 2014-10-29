@@ -39,7 +39,9 @@
           <legend><small><i>C. EcoDiF Architecture Overview</i></small></legend>
           <p>
              Fig. 3 also shows the main modules in EcoDiF. The Devices Connection module aims to facilitate the connection of physical devices to EcoDiF and, consequently, to the Internet. Manufacturers configure their devices according to the EcoDiF interface to enable the integration with the platform. Users connect their preconfigured devices to perform the operations of the provided interface. This connection between the device and EcoDiF is enabled by a customized driver to the specific device, so that data providers can use such driver for connecting their devices and make the data obtained from the devices available at EcoDIF. Data messages (called feeds) are represented using EEML (Extended Environments Markup Language) [15], an XMLbased language that describes data obtained from devices in a specific context. The data is sent by the device to EcoDiF through a driver through http PUT, and users can manipulate the data through EcoDiF Data Manipulation Component.       
-              <h1>INSERT IMAGE HERE</h1>
+              <div class="container" style="margin-left: 20%;">
+                  <img src="img/Architecture.jpg" style="float: center;max-width:100%;height:auto;"/>
+              </div>
         
           The Visualization and Management module provides a Web interface for users managing the devices connected to EcoDiF. These users can monitor the state and location of their devices, create alerts and notifications (triggers) about the environment, and visualize historical data. The Collaboration module let EcoDiF users perform searches for devices and applications registered with the platform based on their metadata (type, user, location, etc.). The Storage module consists of two repositories, a relational database for the data feeds, and a repository for storing application scripts in a file system. These repositories may use a Cloud Computing infrastructure to store relational data and files to enhance the reliability, security, availability, and scalability of the solution. Finally, the Applications module provides a model and environment for programming and executing applications that can use the data (feeds) available at EcoDiF and generate new information to be available at the platform. In EcoDiF, these applications are built as Web mashups [16]. The EMML (Enterprise Mashup Markup Language) [17] XML-based language is used to develop Web mashup applications by integrating data from several sources, including Web services, third-party APIs, and relational databases.
           </p> 
@@ -107,31 +109,11 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>- Domain-based vocabulary (EEML) promotes Interoperability. (<b><a style="cursor: pointer;" id="btn-toggle-subB-q2"><i class="glyphicon glyphicon-share"></i>subsection B, question 2</a></b>)</div> 
-                <div class="panel-body bg-info" id="toggle-subB-q2" style="display: none"><h4>2) Is a standardized vocabulary defined for the resource?</h4>
-                <p>
-                    A resource representation should follow a predefined vocabulary. For XML documents, the vocabulary can be defined by an XML schema. The vocabulary should also be standardized across all services that handle that same resource, as previously discussed in question A.3. Using a vocabulary known by service consumers improves interoperability scenario <a class="I3Scenario badge scenario-badge"><b>I3</b></a>. Also, all information needed to understand the resource must be included in the request and response messages (constraint Stateless, session IV). The HATEOAS (Hypermedia as the Engine of Application State) constraint [3] is used for this purpose. This constraint states that the hypermedia document that represents the resource should be used to find associated resources. For instance, the following fragment of the representation of resource “course” from a university contains a link to another resource representing the lecturers that teach the course:
-                    <br>
-                    <code>
-                        <i>
-                            &lt;course&gt; <br>
-                            &lt;name&gt; Software Architecture &lt;/name&gt; <br>
-                            &lt;area&gt;Software Engineering&lt;/area&gt; <br>
-                            &lt;instructors&gt; <br>
-                                 &lt;uri&gt;/courses/sa/lecturers&lt;/uri&gt; <br>
-                            &lt;/instructors&gt; <br>
-                            &lt;/course&gt; <br>
-                        </i>
-                    </code>
-          
-                </p>
-                <p>
-                HATEOAS positively affects discoverability scenario <a class="D1Scenario badge scenario-badge"><b>D1</b></a>. The response time for a service request decreases because the representation does not need to bring all information about the linked resources, but only references (hyperlinks). However, a greater number of network requests may be necessary to retrieve linked information and the overall performance may be negatively impacted.
-                </p></div>
-                <div>- By using only XML media type interoperability is negatively impacted (<b>see subsection B - Representation and identification, question 1</b>)</div> 
-                <div>- The URI is designed by feed code. It promotes extensibility but negatively impacts in interoperability (<b>see subsection B - Representation and identification, question 3</b>)</div> 
-                <div>- The method used to update resources is PUT and it is idempotent. It promotes Reliability. (<b>see subsection B - Representation and identification, question 5</b>)</div> 
-                    <div>- EcoDiF’s interface responds with http code 201 but does not include the feed URI in response. (<b>See subsection D - Behaviour, question 2</b>)</div>
+                <div>- Domain-based vocabulary (EEML) promotes Interoperability<span class="B2Question"></span></div> 
+                <div>- By using only XML media type interoperability is negatively impacted <span class="B1Question"></span></div> 
+                <div>- The URI is designed by feed code. It promotes extensibility but negatively impacts in interoperability <span class="B3Question"></span></div> 
+                <div>- The method used to update resources is PUT and it is idempotent. It promotes Reliability. <span class="B5Question"></span></div> 
+                    <div>- EcoDiF’s interface responds with http code 201 but does not include the feed URI in response. <span class="D2Question"></span></div>
               </td>
             </tr>
             <tr>
@@ -199,11 +181,11 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>- The URI is designed by the feed code. It promotes extensibility but negatively impacts usability (<b>see subsection B - Representation and identification, question 3</b>)</div> 
+                <div>- The URI is designed by the feed code. It promotes extensibility but negatively impacts usability <span class="B3Question"></span></div> 
                 <div>- It is not possible to explicit the media type in requests. Interoperability is negatively impacted</div> 
-                <div>- It is not possible to explicit the version of requested resources. Adaptability is negatively impacted (<b>see subsection B - Representation and identification, question 4</b>)</div> 
-                <div>- It is not possible to include requested attributes in the URI. Performance and usability is negatively impacted (<b>see subsection D - Behaviour, question 5</b>)</div> 
-                    <div>- Resources are not linked to others. Navigability is negatively impacted (<b>See subsection B - Representation and identification, question 2</b>)</div>
+                <div>- It is not possible to explicit the version of requested resources. Adaptability is negatively impacted <span class="B4Question"></span></div> 
+                <div>- It is not possible to include requested attributes in the URI. Performance and usability is negatively impacted <span class="D5Question"></span></div> 
+                    <div>- Resources are not linked to others. Navigability is negatively impacted <span class="B2Question"></span></div>
               </td>
             </tr>
             <tr>
@@ -271,8 +253,8 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>-EcoDiF’s interface documentation offers information in text documents. (<b>see section C - Documentation and testing, question 1</b>)</div> 
-                <div>- It does not have a sandbox for testing the drivers (<b>see section C - Documentation and testing, question 2</b>)</div> 
+                <div>-EcoDiF’s interface documentation offers information in text documents. <span class="C1Question"></span></div> 
+                <div>- It does not have a sandbox for testing the drivers <span class="C2Question"></span></div> 
               </td>
             </tr>
             <tr>
@@ -338,8 +320,8 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>- The specification does not present the possibility of request different versions of feed resource representation (<b>see subsection B - Representation and identification, question 4</b>)</div> 
-                <div>- The URI is designed according feeds code, so a user can easily compose the URI for request. This impact positively in Functionality quality attribute (<b>see subsection B - Representation and identification, question 5</b>)</div> 
+                <div>- The specification does not present the possibility of request different versions of feed resource representation <span class="B4Question"></span></div> 
+                <div>- The URI is designed according feeds code, so a user can easily compose the URI for request. This impact positively in Functionality quality attribute <span class="B5Question"></span></div> 
               </td>
             </tr>
             <tr>
@@ -351,7 +333,7 @@
             <tr>
               <td><b>Trade-offs</b></td>
               <td>
-                <div>Descriptive URIs and id–based URIs (<b>see subsection B - Representation and identification, question 5</b>)</div>
+                <div>Descriptive URIs and id–based URIs <span class="B5Question"></span></div>
               </td>
             </tr>
           </tbody>
@@ -405,7 +387,7 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>The system is not designed to use no mechanism for authentication and authorization (<b>see subsection E - Representation and identification, question 2</b>)</div> 
+                <div>The system is not designed to use no mechanism for authentication and authorization <span class="E2Question"></span></div> 
               </td>
             </tr>
             <tr>
@@ -471,7 +453,7 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>- Through EEML protocol, it is possible to set the visibility of feeds (<b>see subsection B - Representation and identification, question 2</b>)</div> 
+                <div>- Through EEML protocol, it is possible to set the visibility of feeds <span class="B2Question"></span></div> 
               </td>
             </tr>
             <tr>
@@ -537,9 +519,9 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>- The URI specification of the the feeds does not allow paging capabilities. So many feeds with information tend to increase the response time (<b>see subsection C - Documentation and testing, question 4</b>) </div>
-                <div>- The URI specification of the feeds does not allow the definition of a subset of desired attributes. This impacts negatively on the performance (<b>see subsection C - Documentation and testing, question 5</b>)</div>
-                <div>- The specification does not provide a strategy for dealing with overload requests. If the server is overloaded, the response time will impact negatively (<b>see subsection D – Behavior, question 6</b>)</div>
+                <div>- The URI specification of the the feeds does not allow paging capabilities. So many feeds with information tend to increase the response time <span class="C4Question"></span> </div>
+                <div>- The URI specification of the feeds does not allow the definition of a subset of desired attributes. This impacts negatively on the performance <span class="C5Question"></span></div>
+                <div>- The specification does not provide a strategy for dealing with overload requests. If the server is overloaded, the response time will impact negatively <span class="D6Question"></span></div>
               </td>
             </tr>
             <tr>
@@ -605,7 +587,7 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>The specification does not define any strategy to protect the overload of server requests (<b>see subsection D – Behavior, question 6</b>) </div>
+                <div>The specification does not define any strategy to protect the overload of server requests <span class="D6Question"></span> </div>
               </td>
             </tr>
             <tr>
@@ -671,7 +653,7 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>The specification does not define the versioning of resources (<b>see subsection B – Representation and Identification, question 4</b>) </div>
+                <div>The specification does not define the versioning of resources <span class="B4Question"></span> </div>
               </td>
             </tr>
             <tr>
@@ -737,7 +719,7 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>The specification meets the scenario (<b>see subsection B – Representation and Identification, question 5</b>)</div>
+                <div>The specification meets the scenario <span class="B5Question"></span></div>
               </td>
             </tr>
             <tr>
@@ -803,7 +785,7 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>The specification does not provide HATEOAS mechanisms (<b>see subsection B – Representation and Identification, question 1</b>).</div>
+                <div>The specification does not provide HATEOAS mechanisms <span class="B1Question"></span>.</div>
               </td>
             </tr>
             <tr>
@@ -869,7 +851,7 @@
             <tr>
               <td><b>Architectural Analysis</b></td>
               <td>
-                <div>The specification provides the documentation for all methods of the interface (<b>see subsection C – Documentation and testing, question 1</b>).</div>
+                <div>The specification provides the documentation for all methods of the interface <span class="C1Question"></span></div>
               </td>
             </tr>
             <tr>
@@ -906,7 +888,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/questions.js"></script>
     <script src="js/proof.js"></script>
     <script src="js/popover.js"></script>
+    
   </body>
 </html>

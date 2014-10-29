@@ -51,14 +51,11 @@
              The Layered System (<i><u>L</u></i>) constraint is applied by grouping responsibilities in three tiers (Fig. 3): Web Interface, Middleware Services, and Integrated Physical Devices. EcoDiF acts as a web server and physical devices act as Clients (see Section IV). The Stateless (<i><u>S</u></i>) constraint is applied by not keeping state of requests; all resource information is included in the response. It does not have HATEOAS. Code on Demand (<i><u>CoD</u></i>) and Cache (<i><u>$</u></i>) constraints are not applied. Resources were designed according to the EEML protocol. The only resource exposed to clients is a feed. When a user provider creates a feed, EcoDiF assigns an ID to uniquely identify the feed. The URI pattern for identifying the feed is: ecodif.com / api / feed / [ID]. The http method used to request a feed is GET. The same URI is used by user providers to update feeds using http PUT. When a feed is updated, EcoDiF responds with http status code 201, but does not include the URI of the updated feed. To perform a feed update by using PUT, the user credentials must be added as an http header. User providers get their credentials upon registration. If the user provider configures the feed as public, GET is performed without security validations. If the feed is private, only the creator can request the feed representation. The feed uses the application/xml media type. When a resource is requested, EcoDiF sends the full representation of a feed to the client. EcoDiF does not have versioning of resource URI. The EcoDiF interface documentation is available on the web.     
           </p>
       
-          <legend><small><i>E. Concrete Scenarios</i></small></legend>
+          <legend><small><i>E. Concrete Scenarios and Architectural Analysis</i></small></legend>
           <p>
-             Table I shows some quality attribute scenarios for EcoDiF that are relevant to a REST-based architecture. The complete analysis of EcoDiF’s architecture, including all elicited concrete scenarios, can be found at: <a href="http://ubicomp.nce.ufrj.br/restguidance/">http://ubicomp.nce.ufrj.br/restguidance/</a>
+            Below the concrete scenarios are shown and the architecture approaches were probed by using guidelines referenced.. 
           </p>
-        <legend><small><i>F. Architectural Analysis</i></small></legend>
-          <p>
-             The architecture approaches were probed by using guidelines referenced in Section VI for each scenario.
-          </p>
+        
         <div id="Carousel-Proof" class="carousel slide">
         <div class="carousel-inner tab-content">
         
